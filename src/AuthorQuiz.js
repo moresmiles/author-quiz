@@ -1,13 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import Hero from './Hero'
 import './AuthorQuiz.css';
 import './bootstrap.min.css'
+
 class AuthorQuiz extends Component {
   render() {
     return (
-      <div className="AuthorQuiz">
-        AuthorQuiz
-      </div>
+      <div className="container-fluid">
+        <Hero />
+     </div>
     );
   }
 }
