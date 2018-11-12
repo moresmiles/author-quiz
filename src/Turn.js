@@ -1,7 +1,7 @@
 import React from 'react';
 import Book from './Book';
 
-const Turn = ({author, books, highlight}) => {
+const Turn = ({author, books, highlight, onAnswerSelect}) => {
   const highlightColor = (highlight) => {
     const mapping = {
       'none': '',
@@ -10,14 +10,14 @@ const Turn = ({author, books, highlight}) => {
     };
     return mapping[highlight]
   }
-  
+
   return (
     <div className="row turn" style={{backgroundColor: highlightColor(highlight)}}>
       <div className="col-4 offset-1">
         <img src={author.imageUrl} className="authorImage" alt="Author"/>
       </div>
       <div className="col-6">
-        {books.map((title) => <Book title={title} key={title} />)}
+        {books.map((title) => <Book title={title} key={title} onClick={onAnswerSelect}/>)}
       </div>
     </div>
   )
