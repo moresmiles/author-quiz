@@ -4,11 +4,11 @@ import Turn from './Turn';
 import './AuthorQuiz.css';
 import './bootstrap.min.css'
 
-const AuthorQuiz = ({turnData}) => {
+const AuthorQuiz = ({turnData, highlight}) => {
     return (
       <div className="container-fluid">
         <Hero />
-        <Turn {...turnData}/>
+        <Turn {...turnData} highlight={highlight}/>
      </div>
     );
   }
