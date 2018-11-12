@@ -1,5 +1,6 @@
 import React from 'react';
 import Book from './Book';
+import PropTypes from 'prop-types';
 
 const Turn = ({author, books, highlight, onAnswerSelect}) => {
   const highlightColor = (highlight) => {
@@ -21,6 +22,18 @@ const Turn = ({author, books, highlight, onAnswerSelect}) => {
       </div>
     </div>
   )
+}
+
+Turn.propTypes = {
+  author: PropTypes.shape({
+    name: PropTypes.string.isRequired,
+    imageUrl: PropTypes.string.isRequired,
+    imageSource: PropTypes.string.isRequired,
+    books: PropTypes.arrayOf(PropTypes.string).isRequired
+  }),
+  books: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onAnswerSelected: PropTypes.func.isRequired,
+  highlight: PropTypes.string.isRequired
 }
 
 export default Turn;
