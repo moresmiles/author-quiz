@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import {BrowserRouter, Route} from 'react-router-dom';
 import AuthorQuiz from './AuthorQuiz';
+import AddAuthorForm from './AddAuthorForm';
 import {shuffle, sample} from 'underscore';
 
 const authors =[
@@ -70,9 +72,21 @@ const onAnswerSelect = (answer) => {
     highlight: ''
   };
 
-const render = () => {
-  ReactDOM.render(<AuthorQuiz {...state} onAnswerSelect={onAnswerSelect}/>, document.getElementById('root'));
+const App = () => {
+  return <AuthorQuiz {...state} onAnswerSelect={onAnswerSelect} />
 }
+
+const render = () => {
+  ReactDOM.render(
+    <BrowserRouter>
+      <>
+        <Route exact path="/" component={App} />
+        <Route path="add" component={AddAuthorForm} />
+      </>
+  </BrowserRouter>,
+    document.getElementById('root'));
+}
+
 render();
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
