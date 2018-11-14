@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {BrowserRouter, Route, withRouter} from 'react-router-dom';
 import AuthorQuiz from './AuthorQuiz';
 import AddAuthorForm from './AddAuthorForm';
 import {shuffle, sample} from 'underscore';
@@ -67,13 +67,23 @@ const onAnswerSelect = (answer) => {
   render();
 }
 
-  const state = {
+let state = resetState();
+
+function resetState(){
+  return {
     turnData: getTurnData(authors),
     highlight: ''
   };
+}
 
 const App = () => {
-  return <AuthorQuiz {...state} onAnswerSelect={onAnswerSelect} />
+  return <AuthorQuiz {...state}
+    onAnswerSelect={onAnswerSelect}
+    onContinue={() => {
+      state = resetState();
+      render();
+    }}
+  />
 }
 
 const AuthorWrapper = withRouter(({history}) => {
@@ -88,7 +98,6 @@ const render = () => {
     <BrowserRouter>
       <>
         <Route exact path="/" component={App} />
-        <Route path="add" component={AddAuthorForm} />
         <Route path="/add" component={AuthorWrapper} />
       </>
   </BrowserRouter>,
