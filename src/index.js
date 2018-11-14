@@ -76,12 +76,20 @@ const App = () => {
   return <AuthorQuiz {...state} onAnswerSelect={onAnswerSelect} />
 }
 
+const AuthorWrapper = withRouter(({history}) => {
+  return <AddAuthorForm onAddAuthor={(author) => {
+    authors.push(author);
+    history.push('/');
+  }} />
+})
+
 const render = () => {
   ReactDOM.render(
     <BrowserRouter>
       <>
         <Route exact path="/" component={App} />
         <Route path="add" component={AddAuthorForm} />
+        <Route path="/add" component={AuthorWrapper} />
       </>
   </BrowserRouter>,
     document.getElementById('root'));
